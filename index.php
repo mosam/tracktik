@@ -1,25 +1,15 @@
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous">
-</script>
-<?php 
 
-include_once 'Controllers/ElectronicItems.php';
-include_once 'Controllers/Television.php';
-include_once 'Controllers/Controler.php';
-include_once 'Controllers/Console.php';
-include_once 'Config/Constants.php';
+<?php
+include_once('app/Config/Constants.php');
+include_once('app/Views/Layout/header.php');
 
- $television = new Television();
- $television->setPrice(800);
- $max = $television->maxExtras();
- $price = $television->getPrice();
 
+include 'Router.php';
+
+$request = $_SERVER['REQUEST_URI']; 
+$router = new Router($request);
+$router->get('/tracktik/', 'app/Views/home');
+
+
+include_once('app/Views/Layout/footer.php');
 ?>
-<script>
-    
-$(function() {
-    console.log( "ready!" );
-});
-</script>

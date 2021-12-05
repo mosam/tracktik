@@ -5,14 +5,11 @@ class ElectronicItem
 {
 
 /**
-
 *	@var float
-
 */
 public $price;
 
 /**
-
 *	@var string
 */
 

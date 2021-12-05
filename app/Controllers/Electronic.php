@@ -2,7 +2,6 @@
 
 abstract class Electronic
 {
-         
         public $price;
         public $wired;
         
