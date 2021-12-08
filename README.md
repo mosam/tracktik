@@ -25,3 +25,4 @@ Question 2: That person's friend saw her with her new purchase and asked her how
 
 Please return the test in a compressed PHP file or through an online Git repository (GitHub or similar).
 
+# Assumtion with y understanding 
