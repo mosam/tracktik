@@ -25,4 +25,21 @@ Question 2: That person's friend saw her with her new purchase and asked her how
 
 Please return the test in a compressed PHP file or through an online Git repository (GitHub or similar).
 
-# Assumtion with y understanding 
+## **Assumtion with my understanding** 
+
+> Television, Console and Microwave are in a group of main items. which have some price value.
+> Controller come in group of extra item. Which is complimantory item, so it have zero value.
+> You can not insert value from HTML. I have given hard coded value for define the attributes of the products.
+   _you can insert product with it's atribute like below code_  
+   
+	```PHP
+	$television1 = new Television(16000,'television',false,['extras'=>[['product'=>$remoteController,'limit'=>2]]]);
+	```
+
+
+> In the answer of second question,  **type** of electronic item is given as a **console**. so you can get only sum of item which has **console** type.
+> If you want to get total of other type of items, you need to pass the other type in below given like in index.php file.
+
+	```php
+	$typeWiseproduct = $eleItems->getItemsByType('console'); 
+	```
