@@ -1,12 +1,20 @@
 <?php
 
+/**
+ * This class is used for apply some methods on the Product's of cart.
+ */ 
+
 class ElectronicItems
 {
+        /**
+		*	@var array
+		*/
 		private $items = array();
 
 		public function __construct(array $items)
 		{
-			$this->items = $items;
+			$this->items = $items;   
+
 		}
 
 		/**
@@ -14,14 +22,32 @@ class ElectronicItems
 		*	@return array
 		*/
 
-		public function getSortedItems($type)
-		{
-			$sorted = array();
+		public function getSortedItems()
+		{ 
+			$items = $sorted = array();
 			foreach ($this->items as $item)
 			{
-			$sorted[($item->price * 100)] = $item;
+				$items[($item['price'] * 100)] = $item;
 			}
-			return ksort($sorted, SORT_NUMERIC);
+
+			ksort($items, SORT_NUMERIC);
+
+			foreach($items as $x=>$x_value)
+			{
+			    array_push($sorted,$x_value);
+			}
+			 return $sorted;
+		}
+
+
+		/**
+		*	Returns the items total of items
+		*	@return total price of cart items
+		*/
+
+		public function getPriceTotal()
+		{ 
+		    return	array_sum(array_column($this->items,'price'));
 		}
 
 		/**
@@ -31,41 +57,17 @@ class ElectronicItems
 
 		public function getItemsByType($type)
 		{
+
                     if (in_array($type, ElectronicItem::$types))
-                    {
+                    { 
                     $callback = function($item) use ($type)
                     {
-                    return $item->type == $type;
+                    return $item['type'] == $type;
                     };
-                    $items = array_filter($this->items, $callback);
+
+                    return array_filter($this->items,  $callback);
                     }
                     return false;
 		}
 
-                public function addProduct($products)
-                {
-                }
-                
-                 public function removeProduct()
-                {
-                }
- 
-                 public function getTotalQuantity()
-                {
-                    $sum = 0;
-                    foreach ($this->items as $item) {
-                        $sum += $item->getQuantity();
-                    }
-                    return $sum;
-                }
-                
-                public function getTotalSum()
-                {
-                    $totalSum = 0;
-                    foreach ($this->items as $item) {
-                        $totalSum += $item->getQuantity() * $item->getProduct()->getPrice();
-                    }
-
-                    return $totalSum;
-                }
 }

@@ -1,39 +1,11 @@
 <?php
+/**
+ * This is a abstract class. whatever class used it, it has to be implemnt it's abstract method.
+ */
 
 abstract class Electronic
 {
-        public $price;
-        public $wired;
+	abstract public function maxExtras(); 
+	abstract public function getProduct();
         
-	abstract public function maxExtras();
-        
-            public function getPrice()
-            {
-                    return $this->price;
-            }
-
-            public function getType()
-            {
-                    return $this->type;
-            }
-
-            public function getWired()
-            {
-                    return $this->wired;
-            }
-
-            public function setPrice($price)
-            {
-                    $this->price = $price;
-            }
-
-            public function setType($type)
-            {
-                    $this->type = $type;
-            }
-
-            public function setWired($wired)
-            {
-                    $this->wired = $wired;
-            }
 }

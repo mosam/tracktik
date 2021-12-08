@@ -1,47 +1,47 @@
 <h1 class="text-center">Track Tik - PHP Demo Evalution</h1>
-<?php 
-$products = Products;
-?>
-<h5 class="text-center">Product Listing</h5>
+<div class="container ">
 
-<table class="table table-bordered">
-<thead>
-      <tr>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Add Cart</th>
-        <th>Remove Cart</th>
-      </tr>
-    </thead>
-    <tbody>
-        
-      <?php  foreach($products as $key=>$product){ 
-          if(is_array($products[$key])){ ?>
-          
-      <?php  foreach($product as $key1 => $val1){ ?>
-        <tr  data-type ="<?php echo $key ?>" data-name = "<?php echo $key1?>">  <td> 
-            <?php echo $key1; ?>   
-           </td>
-           <td> 
-            <?php echo $val1; ?>   
-           </td> <td><button  type="button" class="btn btn-primary add-cart">+</button></td>
-           <td><button type="button" class="btn btn-primary remove-cart">-</button></td>
-         </tr>
-        <?php }  ?> 
-    <?php }else{  ?>
-         <tr data-type ="<?php echo $key ?>" data-name = "<?php echo $key?>">
-           <td> <?php echo $key; ?></td>
-           <td> 
-            <?php echo $product; ?>   
-           </td>
-           <td><button type="button" class="btn btn-primary add-cart">+</button></td> 
-           <td><button type="button" class="btn btn-primary remove-cart">-</button></td>
-         </tr>
-      <?php } } ?>
-    
-    </tbody>
-  </table>
+    <h4>Answer 1. </h4>
+<table class="table table-bordered  ">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Type</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
 
-
-
- 
+  <?php if(isset($sortedItems) && !empty($sortedItems)){
+  
+  foreach($sortedItems as $key=>$item){ 
+  ?>
+    <tr>
+      <th scope="row"><?php echo $key+1; ?></th>
+     
+      <td><?php echo $item['type']; ?>  <?php if(isset($item['extras'])){
+      $extras = $item['extras']['extras'];  ?>
+           <ul>  
+           <?php  if(!empty($extras) && is_array($extras)) {  
+                     foreach($extras as $key=>$extra){   ?>
+                <li>   
+                    <?php echo $extra['limit'];  echo ($extra['product']->product['wired'] == 1)?' Wired':' Remote';    ?>  controller 
+                </li>
+           <?php } 
+           } ?>
+           </ul>
+      <?php } ?></td>
+      <td><?php echo number_format($item['price'],2);
+      if(isset($item['extras'])){ ?> </br> <?php echo number_format(0000,2); }?></td>
+    </tr>
+    <?php } }?>
+    <tr>
+                    <td colspan="2" align=right><strong>Total:</strong></td>
+                    <td align=left><b><?php echo number_format($totalPrice,2); ?></b></td>
+                    
+                </tr>
+  </tbody>
+</table>
+    <h4>Answer 2. </h4>
+    <p>Console and its controllers cost : </p><b><?php  echo array_sum(array_column($typeWiseproduct,'price')); ?></b>
+</div>

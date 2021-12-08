@@ -5,6 +5,44 @@
 
 <script>
 $(function() {
+    $(".btnAddAction").click(function(){
+       cartAction('add',$(this).attr('data-id'));
+   }); 
+  
+   $(".btnRemoveAction").click(function(){
+       cartAction('remove',$(this).attr('data-id'));
+   }); 
+  
+    function cartAction(action, productId) { 
+    var queryString = "";
+    if (action != "") {
+        switch (action) {
+        case "add":
+            queryString = 'action=' + action + '&id=' + productId
+                    + '&quantity=' + $("#qty_" + productId).val();
+            break;
+        case "remove":
+            queryString = 'action=' + action + '&id=' + productId;
+            break;
+        case "empty":
+            queryString = 'action=' + action;
+            break;
+        }
+    }
+    jQuery.ajax({
+        url : "app/ajaxCall.php",
+        data : queryString,
+        type : "POST",
+        success : function(data) {
+          //  location.reload();
+        },
+        error : function() {
+        }
+    });
+}
+    
+    
+    
     $( ".add-cart" ).click(function() {
       var productsName = $(this).closest('tr').attr('data-name'); 
        var productType = $(this).closest('tr').attr('data-type'); 
